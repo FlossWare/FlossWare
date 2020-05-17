@@ -1,2 +1,2 @@
-# FlossWare.github.io
+# FlossWare
 Documentation for FlossWare - such as Javadocs
