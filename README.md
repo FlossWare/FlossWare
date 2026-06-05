@@ -49,6 +49,7 @@ FlossWare hosts a diverse ecosystem of libraries, utilities, and tools spanning 
 - **[diskwipe-java](./diskwipe-java)** — Secure disk wiping utilities
 - **[fs-watcher-java](./fs-watcher-java)** — Filesystem monitoring
 - **[resource-monitor-java](./resource-monitor-java)** — System resource monitoring
+- **[civilization-simulator-java](./civilization-simulator-java)** — Alternate history civilization simulator
 
 ### Build & DevOps
 
@@ -64,6 +65,7 @@ FlossWare hosts a diverse ecosystem of libraries, utilities, and tools spanning 
 - **[netbeans-plugins](./netbeans-plugins)** — NetBeans IDE extensions
 - **[de-converter](./de-converter)** — Data exchange conversion utilities
 - **[notion2config](./notion2config)** — Notion to configuration file converter
+- **[Samsung-Galaxy-J7](./Samsung-Galaxy-J7)** — Android device conversion guide and automation scripts
 
 ---
 
@@ -75,7 +77,7 @@ We combine AI-driven development speed with the uncompromising safety and perfor
 |:---|:---|:---|:---|
 | **Intelligent Utilities** | High-performance helper libraries, configuration management, developer tooling | Java | Rust / Go |
 | **Network & Services** | Robust, scalable backends and API utilities for modern, data-heavy traffic | Java | TypeScript / Rust |
-| **Infrastructure** | Modular open-source components serving as bedrock for next-gen intelligent applications | Bash / Python | Docker / Kubernetes |
+| **Infrastructure** | Modular open-source components serving as bedrock for next-gen intelligent applications | Docker / Bash / Python | Kubernetes |
 
 > **Why it matters:** By merging AI-first development speeds with Java's proven ecosystem today and expanding into strict systems-level languages like Rust tomorrow, we deliver software that is both rapidly iterated and bulletproof in production.
 
