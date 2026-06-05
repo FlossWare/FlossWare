@@ -18,15 +18,15 @@ At FlossWare, we don't just build software *for* the AI era—we build it *with*
 
 We combine AI-driven development speed with the uncompromising safety and performance of modern language stacks. Our repositories focus on building modular, reliable infrastructure.
 
-| Pillar | Focus Areas | Primary Stack |
-| :--- | :--- | :--- |
-| **Intelligent Utilities** | High-performance helper libraries, configuration management, and developer tooling. | Java / Rust / Go |
-| **Network & Services** | Robust, scalable backends and API utilities designed to handle modern, data-heavy traffic. | Java / TypeScript / Rust |
-| **Infrastructure** | Modular open-source components that serve as the bedrock for next-gen intelligent applications. | Docker / Bash / Python |
+| Pillar | Focus Areas | Current Stack | Future Stack |
+| :--- | :--- | :--- | :--- |
+| **Intelligent Utilities** | High-performance helper libraries, configuration management, and developer tooling. | Java | Rust / Go |
+| **Network & Services** | Robust, scalable backends and API utilities designed to handle modern, data-heavy traffic. | Java | TypeScript / Rust |
+| **Infrastructure** | Modular open-source components that serve as the bedrock for next-gen intelligent applications. | Docker / Bash / Python | Kubernetes |
 
 ---
 
-> **Why it matters:** By merging AI-first development speeds with strict systems-level languages like Rust and Java, we deliver software that is both rapidly iterated and bulletproof in production.
+> **Why it matters:** By merging AI-first development speeds with Java's proven ecosystem today and expanding into strict systems-level languages like Rust tomorrow, we deliver software that is both rapidly iterated and bulletproof in production.
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Engineering the future with AI-first development. Crafting robust, high-performance software, libraries, and utilities designed for the intelligence era.**
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Contributor%20Covenant-purple.svg)](CODE_OF_CONDUCT.md)
 
 ---
@@ -142,7 +142,7 @@ We **encourage** AI-assisted development! When submitting AI-generated or AI-ass
 
 ## 📄 License
 
-FlossWare projects are licensed under the **Apache License 2.0** unless otherwise specified. See [LICENSE](LICENSE) for details.
+FlossWare projects are licensed under the **GNU General Public License v3.0** unless otherwise specified. See [LICENSE](LICENSE) for details.
 
 ---
 
