@@ -53,18 +53,10 @@ FlossWare hosts a diverse ecosystem of libraries, utilities, and tools spanning 
 ### Build & DevOps
 
 - **[build-tools](./build-tools)** — Modular build automation and tooling
-- **[jbuild-tools](./jbuild-tools)** — Java-specific build utilities
-
-### AI Development Tools
-
-- **[autoreview-ai](./autoreview-ai)** — Automated code review using AI
-- **[autoresolve-ai](./autoresolve-ai)** — AI-powered issue resolution
-- **[claude-global-workflows](./claude-global-workflows)** — Reusable Claude Code workflows
 
 ### Systems & Infrastructure
 
 - **[VirtOS](./VirtOS)** — Virtual operating system framework
-- **[VirtOS-Examples](./VirtOS-Examples)** — Example implementations and demos
 - **[cobbler](./cobbler)** — System provisioning and management
 
 ### Utilities & Tools
@@ -79,13 +71,13 @@ FlossWare hosts a diverse ecosystem of libraries, utilities, and tools spanning 
 
 We combine AI-driven development speed with the uncompromising safety and performance of modern language stacks:
 
-| Pillar | Focus Areas | Primary Stack |
-|:---|:---|:---|
-| **Intelligent Utilities** | High-performance helper libraries, configuration management, developer tooling | Rust / Go / Java |
-| **Network & Services** | Robust, scalable backends and API utilities for modern, data-heavy traffic | TypeScript / Rust / Java |
-| **Infrastructure** | Modular open-source components serving as bedrock for next-gen intelligent applications | Docker / Bash / Python |
+| Pillar | Focus Areas | Current Stack | Future Stack |
+|:---|:---|:---|:---|
+| **Intelligent Utilities** | High-performance helper libraries, configuration management, developer tooling | Java | Rust / Go |
+| **Network & Services** | Robust, scalable backends and API utilities for modern, data-heavy traffic | Java | TypeScript / Rust |
+| **Infrastructure** | Modular open-source components serving as bedrock for next-gen intelligent applications | Bash / Python | Docker / Kubernetes |
 
-> **Why it matters:** By merging AI-first development speeds with strict systems-level languages like Rust and Java, we deliver software that is both rapidly iterated and bulletproof in production.
+> **Why it matters:** By merging AI-first development speeds with Java's proven ecosystem today and expanding into strict systems-level languages like Rust tomorrow, we deliver software that is both rapidly iterated and bulletproof in production.
 
 ---
 
@@ -102,9 +94,9 @@ Most FlossWare projects require:
 ### Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/FlossWare/[project-name].git
-cd [project-name]
+# Clone a specific project (example: commons-java)
+git clone https://github.com/FlossWare/commons-java.git
+cd commons-java
 
 # For Java projects
 mvn clean install
@@ -113,7 +105,7 @@ mvn clean install
 docker-compose up
 ```
 
-Refer to individual project READMEs for specific setup instructions.
+**Note:** Replace `commons-java` with any project name from the catalog above. Refer to individual project READMEs for specific setup instructions.
 
 ---
 

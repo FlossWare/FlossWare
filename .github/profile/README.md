@@ -20,13 +20,13 @@ We combine AI-driven development speed with the uncompromising safety and perfor
 
 | Pillar | Focus Areas | Primary Stack |
 | :--- | :--- | :--- |
-| **Intelligent Utilities** | High-performance helper libraries, configuration management, and developer tooling. | Rust / Go |
-| **Network & Services** | Robust, scalable backends and API utilities designed to handle modern, data-heavy traffic. | TypeScript / Rust |
-| **Infrastructure** | Modular open-source components that serve as the bedrock for next-gen intelligent applications. | Docker / Scripting |
+| **Intelligent Utilities** | High-performance helper libraries, configuration management, and developer tooling. | Java / Rust / Go |
+| **Network & Services** | Robust, scalable backends and API utilities designed to handle modern, data-heavy traffic. | Java / TypeScript / Rust |
+| **Infrastructure** | Modular open-source components that serve as the bedrock for next-gen intelligent applications. | Docker / Bash / Python |
 
 ---
 
-> **Why it matters:** By merging AI-first development speeds with strict systems-level languages like Rust, we deliver software that is both rapidly iterated and bulletproof in production.
+> **Why it matters:** By merging AI-first development speeds with strict systems-level languages like Rust and Java, we deliver software that is both rapidly iterated and bulletproof in production.
 
 ---
 
