@@ -102,12 +102,12 @@ FlossWare builds reusable engineering foundations and reference implementations 
 
 ## Meet the Team
 
-- **[Scot Floess](sfloess/)** -- Senior Principal Software Engineer at Red Hat with 30+ years building distributed systems, enterprise Java, and open source tooling. Architect of FlossWare, co-architect of [Solenopsis](https://github.com/solenopsis), and holder of [U.S. Patent 6,442,565](https://patents.google.com/patent/US6442565) for distributed computing technologies.
+- **[Scot Floess](sfloess/)** -- Senior Principal Software Engineer at Red Hat with 30+ years building distributed systems, enterprise Java, and open source tooling. Architect of [FlossWare](https://github.com/FlossWare), co-architect of [Solenopsis](https://github.com/solenopsis), and holder of [U.S. Patent 6,442,565](https://patents.google.com/patent/US6442565) for distributed computing technologies.
 
 ---
 
 ## Contributing
 
-Contributions should align with the FlossWare [engineering standards](https://github.com/FlossWare/engineering-standards). Projects should favor clarity, composability, and maintainable open designs over unnecessary complexity.
+Contributions should align with the [FlossWare](https://github.com/FlossWare) [engineering standards](https://github.com/FlossWare/engineering-standards). Projects should favor clarity, composability, and maintainable open designs over unnecessary complexity.
 
 See the [Contributing Guide](docs/development/contributing.md) for details.
