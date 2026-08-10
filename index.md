@@ -2,40 +2,67 @@
 title: FlossWare
 ---
 
-# FlossWare
+<div class="fw-hero-intro">
+  <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
+  <h2>Software systems built to stay understandable.</h2>
+  <p class="fw-lead">FlossWare is a free-first engineering ecosystem for modular infrastructure, AI-assisted systems, distributed services, and reusable open-source foundations.</p>
+  <div class="fw-actions">
+    <a class="fw-button fw-button-primary" href="https://github.com/FlossWare">Explore GitHub</a>
+    <a class="fw-button fw-button-secondary" href="#architecture">Explore the architecture</a>
+  </div>
+</div>
 
-**Free-first, modular infrastructure and AI-assisted engineering.**
+<div class="fw-stats">
+  <div><strong>Open</strong><span>standards first</span></div>
+  <div><strong>Modular</strong><span>loosely coupled systems</span></div>
+  <div><strong>AI-ready</strong><span>REST + MCP + events</span></div>
+  <div><strong>Documented</strong><span>decisions preserved</span></div>
+</div>
 
-FlossWare builds reusable engineering foundations and reference implementations using open standards, explicit configuration, and loosely coupled architectures.
+## What is FlossWare?
 
----
+FlossWare builds reusable engineering foundations and reference implementations using open standards, explicit configuration, and loosely coupled architectures. The goal is deliberately unfashionable: **make powerful systems understandable, replaceable, and maintainable.**
 
-## Architecture Principles
+<div class="fw-cards">
+  <a class="fw-card" href="#architecture">
+    <span class="fw-card-icon">01</span>
+    <h3>Architecture</h3>
+    <p>Service boundaries, orchestration, routing, distributed fleets, consensus, and stable integration contracts.</p>
+  </a>
+  <a class="fw-card" href="#knowledge">
+    <span class="fw-card-icon">02</span>
+    <h3>Knowledge systems</h3>
+    <p>Scraping, chunking, embeddings, vector search, graphs, and the pipelines connecting them.</p>
+  </a>
+  <a class="fw-card" href="#projects">
+    <span class="fw-card-icon">03</span>
+    <h3>Open-source projects</h3>
+    <p>Reusable libraries, infrastructure tooling, engineering standards, and reference implementations.</p>
+  </a>
+</div>
 
-- **Configuration is the source of truth**
-- **Minimal behavior by default; capabilities are explicitly enabled**
-- **Components are modular and composable**
-- **Open standards over vendor lock-in**
-- **Loose coupling through stable contracts**
+## Architecture {#architecture}
 
-## Reference Architecture
+<div class="fw-principles">
+  <div><strong>Configuration is the source of truth.</strong><span>Behavior should be explicit rather than hidden in code.</span></div>
+  <div><strong>Minimal by default.</strong><span>Capabilities are enabled deliberately.</span></div>
+  <div><strong>Contracts over coupling.</strong><span>Stable interfaces let components evolve independently.</span></div>
+  <div><strong>Open standards.</strong><span>Prefer interoperable designs over vendor lock-in.</span></div>
+</div>
 
+```text
+                         Clients / Agents
+                                |
+                   REST APIs / MCP Tool Interfaces
+                                |
+                         Service Boundaries
+                         /               \
+                        /                 \
+              Stored Procedures       Message Bus
+                    |                       |
+                    v                       v
+                Databases             Event Consumers
 ```
-                 Clients / Agents
-                       |
-          REST APIs / MCP Tool Interfaces
-                       |
-              Service Boundaries
-                       |
-        +--------------+--------------+
-        |                             |
-  Stored Procedures              Message Bus
-        |                             |
-        v                             v
-    Databases                 Event Consumers
-```
-
-## Integration Model
 
 - **REST** provides synchronous service contracts.
 - **MCP** provides AI agent and tool integration contracts.
@@ -43,71 +70,74 @@ FlossWare builds reusable engineering foundations and reference implementations 
 - **Stored procedures** provide database abstraction where they add value.
 - **ADRs** preserve architectural decisions.
 
----
+### Architecture documentation
 
-## Documentation
+- [Orchestration Layer](docs/architecture/orchestration.md) — REST API, task classification, request lifecycle
+- [Distributed Fleet](docs/architecture/fleet.md) — heterogeneous cluster topology and SSH-based distribution
+- [Consensus Engine](docs/architecture/consensus.md) — multi-model synthesis and arbiter patterns
+- [Model Routing](docs/architecture/routing.md) — Thompson Sampling, capability matrix, fallback chains
 
-### Architecture
+## Knowledge systems {#knowledge}
 
-- [Orchestration Layer](docs/architecture/orchestration.md) -- REST API, task classification, request lifecycle
-- [Distributed Fleet](docs/architecture/fleet.md) -- Heterogeneous cluster topology and SSH-based distribution
-- [Consensus Engine](docs/architecture/consensus.md) -- Multi-model synthesis and arbiter patterns
-- [Model Routing](docs/architecture/routing.md) -- Thompson Sampling, capability matrix, fallback chains
+<div class="fw-cards fw-cards-compact">
+  <a class="fw-card" href="docs/knowledge/scraping.md"><h3>Ingest</h3><p>Web scraping and document acquisition from diverse knowledge domains.</p></a>
+  <a class="fw-card" href="docs/knowledge/chunking.md"><h3>Transform</h3><p>Semantic chunking and preparation for downstream retrieval.</p></a>
+  <a class="fw-card" href="docs/knowledge/embeddings.md"><h3>Retrieve</h3><p>Vector embeddings, HNSW indexing, and similarity search.</p></a>
+  <a class="fw-card" href="docs/knowledge/graph.md"><h3>Connect</h3><p>Knowledge graphs and relationship traversal across stored knowledge.</p></a>
+</div>
 
-### Databases
+### Knowledge documentation
 
-- [PostgreSQL + pgvector](docs/databases/postgres.md) -- Relational storage, vector similarity, schema overview
-- [Redis](docs/databases/redis.md) -- Pipeline queues, caching, rate limiting
-- [OrientDB](docs/databases/orientdb.md) -- Graph database for relationship traversal
+- [Web Scraping](docs/knowledge/scraping.md)
+- [Document Chunking](docs/knowledge/chunking.md)
+- [Vector Embeddings](docs/knowledge/embeddings.md)
+- [Knowledge Graph](docs/knowledge/graph.md)
 
-### Knowledge Pipeline
+## Data and infrastructure
 
-- [Web Scraping](docs/knowledge/scraping.md) -- Document ingestion from 116+ scrapers across 15+ domains
-- [Document Chunking](docs/knowledge/chunking.md) -- Semantic splitting for embedding
-- [Vector Embeddings](docs/knowledge/embeddings.md) -- HNSW indexing and similarity search
-- [Knowledge Graph](docs/knowledge/graph.md) -- Triple-store architecture
-
-### Learning and Optimization
-
-- [Thompson Sampling](docs/learning/thompson_sampling.md) -- Bayesian multi-armed bandit for strategy selection
-- [Genetic Algorithms](docs/learning/genetic_algorithms.md) -- Configuration evolution across seven domains
-
-### Operations
-
-- [Deployment](docs/operations/deployment.md) -- Ansible-automated fleet deployment
-- [Monitoring](docs/operations/monitoring.md) -- Fleet health, provider tracking, feedback loop analysis
-- [Scaling](docs/operations/scaling.md) -- Horizontal and vertical scaling, bottleneck identification
-
-### Development
-
-- [Getting Started](docs/development/getting_started.md) -- Development environment setup
-- [Contributing](docs/development/contributing.md) -- How to contribute
-- [Coding Standards](docs/development/coding_standards.md) -- Code conventions and patterns
-
-### Philosophy
-
-- [Design Philosophy](docs/philosophy.md) -- Architectural decisions, tradeoffs, and rationale
-
----
-
-## Featured Projects
-
-| Repository | Purpose |
+| System | Role |
 |---|---|
-| [engineering-standards](https://github.com/FlossWare/engineering-standards) | Architecture decisions, engineering principles, and development standards |
-| [commons-java](https://github.com/FlossWare/commons-java) | Shared Java foundation libraries |
-| [tftp-os](https://github.com/FlossWare/tftp-os) | Reference implementation for infrastructure provisioning and automation |
+| [PostgreSQL + pgvector](docs/databases/postgres.md) | Relational storage and vector similarity |
+| [Redis](docs/databases/redis.md) | Pipeline queues, caching, and rate limiting |
+| [OrientDB](docs/databases/orientdb.md) | Graph storage and relationship traversal |
+
+## Learning and optimization
+
+The engineering work also includes experimental systems for adaptive decision-making and configuration evolution.
+
+- [Thompson Sampling](docs/learning/thompson_sampling.md) — Bayesian multi-armed bandit for strategy selection
+- [Genetic Algorithms](docs/learning/genetic_algorithms.md) — configuration evolution across multiple domains
+
+## Operations
+
+- [Deployment](docs/operations/deployment.md) — Ansible-automated fleet deployment
+- [Monitoring](docs/operations/monitoring.md) — fleet health and provider tracking
+- [Scaling](docs/operations/scaling.md) — horizontal and vertical scaling and bottleneck identification
+
+## Projects {#projects}
+
+<div class="fw-projects">
+  <a href="https://github.com/FlossWare/engineering-standards"><strong>engineering-standards</strong><span>Architecture decisions, engineering principles, and development standards.</span></a>
+  <a href="https://github.com/FlossWare/commons-java"><strong>commons-java</strong><span>Shared Java foundation libraries.</span></a>
+  <a href="https://github.com/FlossWare/tftp-os"><strong>tftp-os</strong><span>Reference implementation for infrastructure provisioning and automation.</span></a>
+</div>
+
+## Development
+
+- [Getting Started](docs/development/getting_started.md)
+- [Contributing](docs/development/contributing.md)
+- [Coding Standards](docs/development/coding_standards.md)
+- [Design Philosophy](docs/philosophy.md)
+
+## About FlossWare
+
+FlossWare is an open-source engineering effort led by **[Scot P. Floess (Flossy)](sfloess/)**. The work spans distributed systems, enterprise Java, search, AI/ML, infrastructure automation, and open-source tooling.
+
+For the professional résumé and background, visit [sfloess.github.io](https://sfloess.github.io). For the Salesforce deployment project, visit [Solenopsis](https://solenopsis.github.io).
 
 ---
 
-## Meet the Team
-
-- **[Scot P. Floess (aka Flossy)](sfloess/)** -- Senior Principal Software Engineer at Red Hat with 30+ years building distributed systems, enterprise Java, and open source tooling. Architect of [FlossWare](https://github.com/FlossWare), co-architect of [Solenopsis](https://github.com/solenopsis), and holder of [U.S. Patent 6,442,565](https://patents.google.com/patent/US6442565) for distributed computing technologies.
-
----
-
-## Contributing
-
-Contributions should align with the [FlossWare](https://github.com/FlossWare) [engineering standards](https://github.com/FlossWare/engineering-standards). Projects should favor clarity, composability, and maintainable open designs over unnecessary complexity.
-
-See the [Contributing Guide](docs/development/contributing.md) for details.
+<div class="fw-footer-cta">
+  <strong>Build it. Document it. Keep it replaceable.</strong>
+  <span>Free-first engineering with open interfaces and deliberate architecture.</span>
+</div>
