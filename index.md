@@ -3,6 +3,9 @@ title: FlossWare
 ---
 
 <div class="fw-hero">
+  <div class="fw-hero-banner">
+    <img src="/images/flossware-banner.jpg" alt="FlossWare">
+  </div>
   <div class="fw-hero-copy">
     <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
     <h2>Software systems built to stay understandable.</h2>
@@ -11,11 +14,6 @@ title: FlossWare
       <a class="fw-button fw-button-primary" href="https://github.com/FlossWare">Explore GitHub</a>
       <a class="fw-button fw-button-secondary" href="#architecture">Explore the architecture</a>
     </div>
-  </div>
-  <div class="fw-hero-mark">
-    <a href="http://flossware.org" aria-label="Visit FlossWare.org">
-      <img src="/images/flossware-github-profile.svg" alt="FlossWare - AI Open-Source">
-    </a>
   </div>
 </div>
 
