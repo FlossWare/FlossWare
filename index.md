@@ -2,19 +2,20 @@
 title: FlossWare
 ---
 
-<div style="text-align:center; margin:0 auto 2.25rem;">
-  <a href="http://flossware.org" aria-label="Visit FlossWare.org">
-    <img src="/images/flossware-banner.jpg" alt="FlossWare - AI Open-Source" style="display:block; width:min(100%, 400px); height:auto; margin:0 auto; border-radius:18px; box-shadow:0 16px 36px rgba(16,24,40,.13);">
-  </a>
-</div>
-
-<div class="fw-hero-intro">
-  <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
-  <h2>Software systems built to stay understandable.</h2>
-  <p class="fw-lead">FlossWare is a free-first engineering ecosystem for modular infrastructure, AI-assisted systems, distributed services, and reusable open-source foundations.</p>
-  <div class="fw-actions">
-    <a class="fw-button fw-button-primary" href="https://github.com/FlossWare">Explore GitHub</a>
-    <a class="fw-button fw-button-secondary" href="#architecture">Explore the architecture</a>
+<div class="fw-hero">
+  <div class="fw-hero-copy">
+    <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
+    <h2>Software systems built to stay understandable.</h2>
+    <p class="fw-lead">FlossWare is a free-first engineering ecosystem for modular infrastructure, AI-assisted systems, distributed services, and reusable open-source foundations.</p>
+    <div class="fw-actions">
+      <a class="fw-button fw-button-primary" href="https://github.com/FlossWare">Explore GitHub</a>
+      <a class="fw-button fw-button-secondary" href="#architecture">Explore the architecture</a>
+    </div>
+  </div>
+  <div class="fw-hero-mark">
+    <a href="http://flossware.org" aria-label="Visit FlossWare.org">
+      <img src="/images/flossware-github-profile.svg" alt="FlossWare - AI Open-Source">
+    </a>
   </div>
 </div>
 
