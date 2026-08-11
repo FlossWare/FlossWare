@@ -78,47 +78,47 @@ FlossWare builds reusable engineering foundations and reference implementations 
 
 ### Architecture documentation
 
-- [Orchestration Layer](docs/architecture/orchestration.md) — REST API, task classification, request lifecycle
-- [Distributed Fleet](docs/architecture/fleet.md) — heterogeneous cluster topology and SSH-based distribution
-- [Consensus Engine](docs/architecture/consensus.md) — multi-model synthesis and arbiter patterns
-- [Model Routing](docs/architecture/routing.md) — Thompson Sampling, capability matrix, fallback chains
+- [Orchestration Layer](docs/architecture/orchestration.html) — REST API, task classification, request lifecycle
+- [Distributed Fleet](docs/architecture/fleet.html) — heterogeneous cluster topology and SSH-based distribution
+- [Consensus Engine](docs/architecture/consensus.html) — multi-model synthesis and arbiter patterns
+- [Model Routing](docs/architecture/routing.html) — Thompson Sampling, capability matrix, fallback chains
 
 ## Knowledge systems {#knowledge}
 
 <div class="fw-cards fw-cards-compact">
-  <a class="fw-card" href="docs/knowledge/scraping.md"><h3>Ingest</h3><p>Web scraping and document acquisition from diverse knowledge domains.</p></a>
-  <a class="fw-card" href="docs/knowledge/chunking.md"><h3>Transform</h3><p>Semantic chunking and preparation for downstream retrieval.</p></a>
-  <a class="fw-card" href="docs/knowledge/embeddings.md"><h3>Retrieve</h3><p>Vector embeddings, HNSW indexing, and similarity search.</p></a>
-  <a class="fw-card" href="docs/knowledge/graph.md"><h3>Connect</h3><p>Knowledge graphs and relationship traversal across stored knowledge.</p></a>
+  <a class="fw-card" href="docs/knowledge/scraping.html"><h3>Ingest</h3><p>Web scraping and document acquisition from diverse knowledge domains.</p></a>
+  <a class="fw-card" href="docs/knowledge/chunking.html"><h3>Transform</h3><p>Semantic chunking and preparation for downstream retrieval.</p></a>
+  <a class="fw-card" href="docs/knowledge/embeddings.html"><h3>Retrieve</h3><p>Vector embeddings, HNSW indexing, and similarity search.</p></a>
+  <a class="fw-card" href="docs/knowledge/graph.html"><h3>Connect</h3><p>Knowledge graphs and relationship traversal across stored knowledge.</p></a>
 </div>
 
 ### Knowledge documentation
 
-- [Web Scraping](docs/knowledge/scraping.md)
-- [Document Chunking](docs/knowledge/chunking.md)
-- [Vector Embeddings](docs/knowledge/embeddings.md)
-- [Knowledge Graph](docs/knowledge/graph.md)
+- [Web Scraping](docs/knowledge/scraping.html)
+- [Document Chunking](docs/knowledge/chunking.html)
+- [Vector Embeddings](docs/knowledge/embeddings.html)
+- [Knowledge Graph](docs/knowledge/graph.html)
 
 ## Data and infrastructure
 
 | System | Role |
 |---|---|
-| [PostgreSQL + pgvector](docs/databases/postgres.md) | Relational storage and vector similarity |
-| [Redis](docs/databases/redis.md) | Pipeline queues, caching, and rate limiting |
-| [OrientDB](docs/databases/orientdb.md) | Graph storage and relationship traversal |
+| [PostgreSQL + pgvector](docs/databases/postgres.html) | Relational storage and vector similarity |
+| [Redis](docs/databases/redis.html) | Pipeline queues, caching, and rate limiting |
+| [OrientDB](docs/databases/orientdb.html) | Graph storage and relationship traversal |
 
 ## Learning and optimization
 
 The engineering work also includes experimental systems for adaptive decision-making and configuration evolution.
 
-- [Thompson Sampling](docs/learning/thompson_sampling.md) — Bayesian multi-armed bandit for strategy selection
-- [Genetic Algorithms](docs/learning/genetic_algorithms.md) — configuration evolution across multiple domains
+- [Thompson Sampling](docs/learning/thompson_sampling.html) — Bayesian multi-armed bandit for strategy selection
+- [Genetic Algorithms](docs/learning/genetic_algorithms.html) — configuration evolution across multiple domains
 
 ## Operations
 
-- [Deployment](docs/operations/deployment.md) — Ansible-automated fleet deployment
-- [Monitoring](docs/operations/monitoring.md) — fleet health and provider tracking
-- [Scaling](docs/operations/scaling.md) — horizontal and vertical scaling and bottleneck identification
+- [Deployment](docs/operations/deployment.html) — Ansible-automated fleet deployment
+- [Monitoring](docs/operations/monitoring.html) — fleet health and provider tracking
+- [Scaling](docs/operations/scaling.html) — horizontal and vertical scaling and bottleneck identification
 
 ## Projects {#projects}
 
@@ -130,10 +130,10 @@ The engineering work also includes experimental systems for adaptive decision-ma
 
 ## Development
 
-- [Getting Started](docs/development/getting_started.md)
-- [Contributing](docs/development/contributing.md)
-- [Coding Standards](docs/development/coding_standards.md)
-- [Design Philosophy](docs/philosophy.md)
+- [Getting Started](docs/development/getting_started.html)
+- [Contributing](docs/development/contributing.html)
+- [Coding Standards](docs/development/coding_standards.html)
+- [Design Philosophy](docs/philosophy.html)
 
 ## About FlossWare
 
