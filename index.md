@@ -3,9 +3,6 @@ title: FlossWare
 ---
 
 <div class="fw-hero">
-  <div class="fw-hero-banner">
-    <img src="/images/flossware-banner.jpg" alt="FlossWare">
-  </div>
   <div class="fw-hero-copy">
     <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
     <h2>Software systems built to stay understandable.</h2>
