@@ -4,6 +4,7 @@ title: FlossWare
 
 <div class="fw-hero">
   <div class="fw-hero-copy">
+    <img class="fw-logo" src="/assets/favicon.svg" alt="FlossWare" width="72" height="72">
     <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
     <h2>Software systems built to stay understandable.</h2>
     <p class="fw-lead">FlossWare is a free-first engineering ecosystem for modular infrastructure, AI-assisted systems, distributed services, and reusable open-source foundations.</p>
