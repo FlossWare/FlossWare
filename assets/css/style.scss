@@ -94,6 +94,15 @@ body {
   text-align: center;
 }
 
+.fw-logo {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+}
+
 .fw-kicker {
   color: var(--fw-accent);
   font-size: .78rem;
@@ -194,4 +203,5 @@ body {
   .fw-stats div:last-child { border-bottom: 0; }
   .fw-cards-compact { grid-template-columns: 1fr; }
   .main-content table { font-size: .9rem; }
+  .fw-logo { width: 56px; height: 56px; }
 }
