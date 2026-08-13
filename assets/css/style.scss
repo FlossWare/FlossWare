@@ -30,7 +30,7 @@ body {
     radial-gradient(circle at 12% 8%, rgba(118,87,255,.38), transparent 34%),
     radial-gradient(circle at 88% 16%, rgba(24,184,164,.25), transparent 32%),
     linear-gradient(135deg, #0d1220 0%, #171d35 55%, #241d46 100%);
-  padding: 5.5rem 1rem 5rem;
+  padding: 3.5rem 1rem 4.5rem;
 }
 
 .page-header::after {
@@ -40,6 +40,18 @@ body {
   height: 100%;
   background: radial-gradient(circle, rgba(118,87,255,.14), transparent 65%);
   pointer-events: none;
+}
+
+.fw-header-banner {
+  display: block;
+  width: min(920px, 94%);
+  max-width: 920px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  position: relative;
+  z-index: 1;
 }
 
 .fw-header-logo {
@@ -207,7 +219,7 @@ body {
 }
 
 @media (max-width: 560px) {
-  .page-header { padding: 3.5rem 1rem; }
+  .page-header { padding: 2.5rem 1rem 3rem; }
   .main-content { padding: 2rem 1rem; }
   .fw-stats { grid-template-columns: 1fr; }
   .fw-stats div { border-right: 0; border-bottom: 1px solid var(--fw-border); }
@@ -216,4 +228,5 @@ body {
   .main-content table { font-size: .9rem; }
   .fw-logo { width: 56px; height: 56px; }
   .fw-header-logo { width: 64px; height: 64px; margin-bottom: 1rem; }
+  .fw-header-banner { width: 96%; margin-bottom: 1rem; border-radius: 12px; }
 }
