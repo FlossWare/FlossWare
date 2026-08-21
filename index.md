@@ -7,7 +7,7 @@ title: FlossWare
     <img class="fw-logo" src="/assets/favicon.svg" alt="FlossWare" width="72" height="72">
     <p class="fw-kicker">OPEN SOURCE · AI · ENGINEERING</p>
     <h2>Software systems built to stay understandable.</h2>
-    <p class="fw-lead">FlossWare is a free-first engineering ecosystem for modular infrastructure, AI-assisted systems, distributed services, and reusable open-source foundations.</p>
+    <p class="fw-lead">FlossWare is an open-source engineering ecosystem for modular infrastructure, AI orchestration, reusable libraries, and standards-driven engineering.</p>
     <div class="fw-actions">
       <a class="fw-button fw-button-primary" href="https://github.com/FlossWare">Explore GitHub</a>
       <a class="fw-button fw-button-secondary" href="#architecture">Explore the architecture</a>
@@ -17,130 +17,142 @@ title: FlossWare
 
 <div class="fw-stats">
   <div><strong>Open</strong><span>standards first</span></div>
-  <div><strong>Modular</strong><span>loosely coupled systems</span></div>
-  <div><strong>AI-ready</strong><span>REST + MCP + events</span></div>
+  <div><strong>Modular</strong><span>replaceable components</span></div>
+  <div><strong>AI-ready</strong><span>REST + MCP + SDKs</span></div>
   <div><strong>Documented</strong><span>decisions preserved</span></div>
 </div>
 
 ## What is FlossWare?
 
-FlossWare builds reusable engineering foundations and reference implementations using open standards, explicit configuration, and loosely coupled architectures. The goal is deliberately unfashionable: **make powerful systems understandable, replaceable, and maintainable.**
+FlossWare builds reusable engineering foundations and reference implementations using explicit contracts, open interfaces, and loosely coupled architectures. The goal is deliberately unfashionable: **make powerful systems understandable, replaceable, and maintainable.**
 
 <div class="fw-cards">
   <a class="fw-card" href="#architecture">
     <span class="fw-card-icon">01</span>
     <h3>Architecture</h3>
-    <p>Service boundaries, orchestration, routing, distributed fleets, consensus, and stable integration contracts.</p>
+    <p>Contracts, orchestration, execution, routing, distributed systems, and stable integration boundaries.</p>
   </a>
-  <a class="fw-card" href="#knowledge">
+  <a class="fw-card" href="#loom">
     <span class="fw-card-icon">02</span>
-    <h3>Knowledge systems</h3>
-    <p>Scraping, chunking, embeddings, vector search, graphs, and the pipelines connecting them.</p>
+    <h3>Loom</h3>
+    <p>A provider-neutral AI orchestration substrate with pluggable model, execution, context, data, and capability backends.</p>
   </a>
   <a class="fw-card" href="#projects">
     <span class="fw-card-icon">03</span>
     <h3>Open-source projects</h3>
-    <p>Reusable libraries, infrastructure tooling, engineering standards, and reference implementations.</p>
+    <p>Libraries, infrastructure tooling, engineering standards, and focused capability implementations.</p>
   </a>
 </div>
 
 ## Architecture {#architecture}
 
-<div class="fw-principles">
-  <div><strong>Configuration is the source of truth.</strong><span>Behavior should be explicit rather than hidden in code.</span></div>
-  <div><strong>Minimal by default.</strong><span>Capabilities are enabled deliberately.</span></div>
-  <div><strong>Contracts over coupling.</strong><span>Stable interfaces let components evolve independently.</span></div>
-  <div><strong>Open standards.</strong><span>Prefer interoperable designs over vendor lock-in.</span></div>
-</div>
+FlossWare favors **contracts over coupling** and **replaceability over centralized assumptions**. Components should expose stable interfaces while allowing implementations to evolve independently.
 
 ```text
-                         Clients / Agents
-                                |
-                   REST APIs / MCP Tool Interfaces
-                                |
-                         Service Boundaries
-                         /               \\
-                        /                 \\
-              Stored Procedures       Message Bus
-                    |                       |
-                    v                       v
-                Databases             Event Consumers
+                         Applications / Agents
+                                  |
+                    SDK / CLI / REST / MCP adapters
+                                  |
+                         Loom orchestration
+                    /       |       |        \\
+              execution  routing  consensus  context
+                    \\       |       |        /
+                         Contracts / Protocols
+                                  |
+                  +---------------+----------------+
+                  |               |                |
+               Models          Data           Capabilities
+            cloud/local     storage/search     tools/resources
+                  |               |                |
+                  +--------- replaceable ---------+
 ```
 
-- **REST** provides synchronous service contracts.
-- **MCP** provides AI agent and tool integration contracts.
-- **Message buses** provide asynchronous workflows and event-driven integration.
-- **Stored procedures** provide database abstraction where they add value.
-- **ADRs** preserve architectural decisions.
+- **Contracts** define stable behavior without forcing implementation inheritance.
+- **Loom** composes those contracts into orchestration and execution capabilities.
+- **REST, SDKs, CLI, and MCP** provide integration surfaces appropriate to the consumer.
+- **Backends** remain independently replaceable where practical.
+- **ADRs** preserve architectural decisions and their tradeoffs.
 
 ### Architecture documentation
 
-- [Orchestration Layer](docs/architecture/orchestration.html) — REST API, task classification, request lifecycle
-- [Distributed Fleet](docs/architecture/fleet.html) — heterogeneous cluster topology and SSH-based distribution
-- [Consensus Engine](docs/architecture/consensus.html) — multi-model synthesis and arbiter patterns
-- [Model Routing](docs/architecture/routing.html) — Thompson Sampling, capability matrix, fallback chains
+- [Loom architecture](docs/architecture/loom.md) — current AI orchestration architecture and boundaries
+- [Consensus](docs/architecture/consensus.md) — multi-model synthesis and verification patterns
+- [Distributed Fleet](docs/architecture/fleet.md) — fleet topology and distribution
+- [Model Routing](docs/architecture/routing.md) — adaptive model selection and fallback concepts
+
+## Loom {#loom}
+
+[loom-ai](https://github.com/FlossWare/loom-ai) is the primary AI infrastructure project in the organization.
+
+Loom is an **orchestration substrate, not an agent framework**. Its core defines provider-neutral protocols and uses optional implementations for inference, storage, queues, embeddings, search, graphs, tools, resources, and execution.
+
+Key properties include:
+
+- Local or cloud model implementations can participate through the same contracts.
+- In-memory defaults keep the core usable with minimal dependencies.
+- PostgreSQL, Redis, graph, embedding, search, and other integrations are optional backends.
+- Execution is explicit, with task runners, pipelines, and DAG-based orchestration.
+- MCP and coding-agent adapters provide integration without making those tools core dependencies.
+- External projects are interoperability targets and implementations, not automatically architectural dependencies.
+
+See the [Loom repository](https://github.com/FlossWare/loom-ai) and its [architecture guide](https://github.com/FlossWare/loom-ai/blob/main/docs/architecture.md) for implementation-level detail.
 
 ## Knowledge systems {#knowledge}
 
-<div class="fw-cards fw-cards-compact">
-  <a class="fw-card" href="docs/knowledge/scraping.html"><h3>Ingest</h3><p>Web scraping and document acquisition from diverse knowledge domains.</p></a>
-  <a class="fw-card" href="docs/knowledge/chunking.html"><h3>Transform</h3><p>Semantic chunking and preparation for downstream retrieval.</p></a>
-  <a class="fw-card" href="docs/knowledge/embeddings.html"><h3>Retrieve</h3><p>Vector embeddings, HNSW indexing, and similarity search.</p></a>
-  <a class="fw-card" href="docs/knowledge/graph.html"><h3>Connect</h3><p>Knowledge graphs and relationship traversal across stored knowledge.</p></a>
-</div>
+FlossWare maintains knowledge-oriented components for ingestion, transformation, retrieval, and graph relationships. These capabilities can be consumed independently or supplied to Loom through appropriate contracts.
 
-### Knowledge documentation
+- [Web Scraping](docs/knowledge/scraping.md)
+- [Document Chunking](docs/knowledge/chunking.md)
+- [Vector Embeddings](docs/knowledge/embeddings.md)
+- [Knowledge Graph](docs/knowledge/graph.md)
 
-- [Web Scraping](docs/knowledge/scraping.html)
-- [Document Chunking](docs/knowledge/chunking.html)
-- [Vector Embeddings](docs/knowledge/embeddings.html)
-- [Knowledge Graph](docs/knowledge/graph.html)
+Project knowledge that is private or operationally sensitive is intentionally kept outside the public organization documentation.
 
 ## Data and infrastructure
 
 | System | Role |
 |---|---|
-| [PostgreSQL + pgvector](docs/databases/postgres.html) | Relational storage and vector similarity |
-| [Redis](docs/databases/redis.html) | Pipeline queues, caching, and rate limiting |
-| [OrientDB](docs/databases/orientdb.html) | Graph storage and relationship traversal |
+| [PostgreSQL + pgvector](docs/databases/postgres.md) | Relational and vector storage where appropriate |
+| [Redis](docs/databases/redis.md) | Queues, caching, and rate limiting where appropriate |
+| [OrientDB](docs/databases/orientdb.md) | Graph storage and relationship traversal where appropriate |
+
+These are **supported implementations, not mandatory architectural dependencies**. The distinction matters now that Loom is explicitly pluggable.
 
 ## Learning and optimization
 
-The engineering work also includes experimental systems for adaptive decision-making and configuration evolution.
+FlossWare also explores adaptive engineering techniques that can be used where they provide measurable value:
 
-- [Thompson Sampling](docs/learning/thompson_sampling.html) — Bayesian multi-armed bandit for strategy selection
-- [Genetic Algorithms](docs/learning/genetic_algorithms.html) — configuration evolution across multiple domains
+- [Thompson Sampling](docs/learning/thompson_sampling.md) — adaptive selection under uncertainty
+- [Genetic Algorithms](docs/learning/genetic_algorithms.md) — configuration and strategy optimization
 
-## Operations
-
-- [Deployment](docs/operations/deployment.html) — Ansible-automated fleet deployment
-- [Monitoring](docs/operations/monitoring.html) — fleet health and provider tracking
-- [Scaling](docs/operations/scaling.html) — horizontal and vertical scaling and bottleneck identification
+These techniques are capabilities, not universal requirements.
 
 ## Projects {#projects}
 
 <div class="fw-projects">
-  <a href="https://github.com/FlossWare/engineering-standards"><strong>engineering-standards</strong><span>Architecture decisions, engineering principles, and development standards.</span></a>
+  <a href="https://github.com/FlossWare/loom-ai"><strong>loom-ai</strong><span>Provider-neutral AI orchestration substrate with pluggable contracts and backends.</span></a>
+  <a href="https://github.com/FlossWare/engineering-standards"><strong>engineering-standards</strong><span>Canonical engineering principles, standards, and architecture decision records.</span></a>
   <a href="https://github.com/FlossWare/commons-java"><strong>commons-java</strong><span>Shared Java foundation libraries.</span></a>
-  <a href="https://github.com/FlossWare/tftp-os"><strong>tftp-os</strong><span>Reference implementation for infrastructure provisioning and automation.</span></a>
+  <a href="https://github.com/FlossWare/knowledge"><strong>knowledge</strong><span>Private knowledge repository and supporting material.</span></a>
 </div>
+
+For the complete current repository roles and visibility, see the [repository map](docs/repositories.md).
 
 ## Development
 
-- [Getting Started](docs/development/getting_started.html)
-- [Contributing](docs/development/contributing.html)
-- [Coding Standards](docs/development/coding_standards.html)
-- [Design Philosophy](docs/philosophy.html)
+- [Getting Started](docs/development/getting_started.md)
+- [Contributing](docs/development/contributing.md)
+- [Coding Standards](docs/development/coding_standards.md)
+- [Design Philosophy](docs/philosophy.md)
+- [Engineering Standards](https://github.com/FlossWare/engineering-standards)
 
 ## About FlossWare
 
-FlossWare is an open-source engineering effort led by **[Scot P. Floess (Flossy)](sfloess/)**. The work spans distributed systems, enterprise Java, search, AI/ML, infrastructure automation, and open-source tooling.
-
-For the professional résumé and background, visit [sfloess.github.io](https://sfloess.github.io). For the Salesforce deployment project, visit [Solenopsis](https://solenopsis.github.io).
+FlossWare is an open-source engineering effort spanning distributed systems, enterprise Java, search, AI/ML, infrastructure automation, and reusable engineering tooling.
 
 ---
 
 <div class="fw-footer-cta">
   <strong>Build it. Document it. Keep it replaceable.</strong>
-  <span>Free-first engineering with open interfaces and deliberate architecture.</span>
+  <span>Open interfaces, deliberate architecture, and evidence-driven engineering.</span>
 </div>
