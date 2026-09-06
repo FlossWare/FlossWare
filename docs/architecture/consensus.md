@@ -4,171 +4,85 @@ title: Consensus Engine
 
 # Consensus Engine
 
-The consensus engine queries multiple LLMs for the same task and synthesizes their responses into a single, higher-quality answer. It is the core differentiator of the orchestration framework: instead of trusting one model, the system triangulates across models with different training data, architectures, and failure modes.
+Consensus is a **Loom capability**, not the definition of the FlossWare architecture and not a requirement for every request.
 
----
+Loom can fan a task out to multiple compatible inference implementations, collect independent results, and synthesize or evaluate them. The exact number of models, providers, workers, arbiter, strategy, and storage backend are deployment choices behind contracts.
 
-## How Consensus Works
+## Conceptual flow
 
-A consensus request proceeds through four stages: dispatch, collection, scoring, and synthesis.
-
-```
-                          CONSENSUS FLOW
-
-  Task: "Review this function for off-by-one errors"
-    |
-    v
-  +------------------+
-  | Model Selection   |    Thompson Sampling selects 6 models
-  | (Thompson Sampling)|    from 200+ candidates based on
-  +------------------+    task type: code_review
-    |
-    |  Dispatch in parallel
-    v
-  +----------+  +----------+  +----------+  +----------+  +----------+  +----------+
-  | Worker 1 |  | Worker 2 |  | Worker 3 |  | Worker 4 |  | Worker 5 |  | Worker 6 |
-  | Sonnet   |  | Opus     |  | GPT-4o   |  | Gemini   |  | DeepSeek |  | Qwen     |
-  +----------+  +----------+  +----------+  +----------+  +----------+  +----------+
-    |  resp A     |  resp B     |  resp C     |  timeout    |  resp E     |  resp F
-    |             |             |             |  (skip)     |             |
-    v             v             v                           v             v
-  +------------------------------------------------------------------------+
-  |                         ARBITER (Fable)                                 |
-  |                                                                        |
-  |  Inputs:                                                               |
-  |    - 5 worker responses (A, B, C, E, F)                                |
-  |    - Weighted scores per response                                      |
-  |    - Original task description                                         |
-  |                                                                        |
-  |  Process:                                                              |
-  |    1. Score each response (relevance, correctness, completeness)        |
-  |    2. Identify agreement points (mentioned by 3+ responses)            |
-  |    3. Identify disagreement points (strong contradiction)              |
-  |    4. Weight by capability score and historical accuracy                |
-  |    5. Synthesize unified answer                                        |
-  |    6. Flag unresolved disagreements                                    |
-  |                                                                        |
-  |  Output:                                                               |
-  |    - Synthesized consensus response                                    |
-  |    - Per-response scores                                               |
-  |    - Agreement/disagreement summary                                    |
-  |    - Confidence level (high/medium/low)                                |
-  +------------------------------------------------------------------------+
-    |
-    v
-  Consensus Response returned to caller
+```text
+                         Task
+                          |
+                          v
+                 Capability / policy
+                          |
+                          v
+                   Model routing
+                    /    |    \
+                   /     |     \
+              Model A  Model B  Model C ...
+                   \     |     /
+                    \    |    /
+                     v   v   v
+                   Results / evidence
+                          |
+                          v
+              Synthesis / verification
+                          |
+                          v
+                       Result
 ```
 
----
+Consensus is useful when independent evidence can improve the result. It is unnecessary overhead when a deterministic check, a single capable model, or another verification mechanism is stronger and cheaper.
 
-## Consensus Strategies
+## Strategies
 
-The system supports five consensus strategies, selectable per request or per task category.
+A consensus implementation may provide strategies such as:
 
-### Rotating (default)
+- **Rotating arbiter** for distributing synthesis across compatible models.
+- **Single arbiter** for consistent synthesis.
+- **Majority** for tasks where semantic agreement is meaningful.
+- **Weighted** when historical capability evidence should influence aggregation.
+- **Pairwise** when explicit comparison between candidate responses is valuable.
+- **Custom** strategies for domain-specific verification.
 
-The arbiter model rotates through a predefined list across consecutive requests. This prevents arbiter bias from accumulating. Rotation order is deterministic (round-robin keyed by request count mod pool size). The rotation pool defaults to: Opus, Sonnet, Fable, Haiku.
+These are implementations of the consensus capability, not organization-wide defaults.
 
-### Single
+## Verification and disagreement
 
-A fixed arbiter model handles all synthesis. Useful when you want consistent synthesis behavior.
+Consensus should preserve disagreement rather than silently converting disagreement into confidence. Useful outputs may include:
 
-### Majority
+- synthesized response;
+- per-response evidence or scores;
+- agreement points;
+- disagreement points;
+- minority insights;
+- confidence or escalation state.
 
-No arbiter. The system counts agreement among worker responses using semantic similarity. If 4 of 6 workers agree on a finding, it is included. Best for classification tasks and binary decisions.
+Agreement is evidence, not proof. Multiple models can share the same blind spot, especially when they share provider, training-data, architecture, or prompt biases.
 
-### Weighted
+For high-stakes work, deterministic tests, independent verification, or human review may be more appropriate than model consensus alone.
 
-Similar to majority but responses are weighted by capability score, historical accuracy, and model tier before counting.
+## Routing and adaptive selection
 
-### Pairwise
+A consensus implementation may use fixed selection, capability-aware routing, fallback policies, or adaptive selection such as Thompson Sampling. Genetic optimization may also be used to evaluate team composition or strategy configurations when a reliable fitness signal exists.
 
-Each pair of worker responses is compared head-to-head by a judge model. The most expensive strategy but produces the most defensible ranking.
+The architecture does **not** require a pool of 200+ models, a six-model panel, a particular provider mix, or a particular worker count.
 
----
+## Caching
 
-## The Arbiter
+Consensus results may be cached when requests are safely reusable. Cache behavior belongs to the selected storage/cache implementation and should be governed by task semantics, model configuration, and freshness requirements.
 
-The arbiter receives a structured prompt containing the original task, all worker responses labeled by model, and computed weights. It produces structured output:
+## Historical implementation
 
-```json
-{
-  "consensus": "The synthesized answer...",
-  "confidence": "high",
-  "agreement_points": [
-    "All models agree the loop terminates one iteration early"
-  ],
-  "disagreement_points": [
-    "Models disagree on whether the fix should use <= or < + 1"
-  ],
-  "minority_insights": [
-    "Only DeepSeek noted the potential integer overflow on line 42"
-  ],
-  "per_model_scores": {
-    "sonnet": 0.85,
-    "opus": 0.92,
-    "gpt-4o": 0.78,
-    "deepseek": 0.88,
-    "qwen": 0.74
-  }
-}
-```
+Earlier FlossWare deployments used a six-worker consensus pattern with a large provider/model pool and a fixed physical fleet. That design is historical. It should not be copied into new documentation as a universal Loom requirement.
 
----
+The historical implementation remains useful as an example of one possible deployment and as evidence for operational lessons. Current implementations should depend on Loom contracts instead of the old fleet topology.
 
-## Consensus Caching
+## Current source of truth
 
-Identical consensus queries are cached in Redis with configurable TTL (default: 5 minutes for code, 30 minutes for research, 60 minutes for documentation). Cache key is SHA-256 of normalized task description, model list, and strategy.
-
----
-
-## Disagreement Detection
-
-When models strongly disagree (pairwise cosine similarity below 0.3), the system flags the disagreement rather than silently picking a winner. For high-stakes categories (security_audit, architecture), disagreements below 0.2 trigger automatic escalation with a larger worker pool.
-
----
-
-## Default Worker Pool
-
-| Model | Provider | Strength | Typical Role |
-|-------|----------|----------|--------------|
-| claude-sonnet | Anthropic | Balanced reasoning, strong code | Primary worker |
-| claude-opus | Anthropic | Deep analysis, nuanced reasoning | Primary worker |
-| claude-haiku | Anthropic | Fast, cost-effective, good at classification | Fast-path worker |
-| gpt-4o | OpenRouter | Strong structured output, broad knowledge | Primary worker |
-| gemini-2.0-flash | Google | Long context, fast inference | Long-context worker |
-| llama-3.3-70b | Groq | Fast inference via LPU, open-weight reasoning | Speed worker |
-
-Worker pool composition is subject to GA optimization, which evolves team compositions based on consensus quality metrics.
-
----
-
-## When Consensus Fails
-
-```
-                     CONSENSUS FAILURE FALLBACK CHAIN
-
-  Normal:       6 workers --> arbiter synthesis --> consensus response
-                                    |
-                              arbiter fails?
-                                    |
-  Fallback 1:   6 workers --> highest-weighted response (no synthesis)
-                    |
-              only 1 response?
-                    |
-  Fallback 2:   1 worker --> single response, confidence: low
-                    |
-              0 responses?
-                    |
-  Fallback 3:   retry with 2x timeout, different workers
-                    |
-              retry also fails?
-                    |
-  Error:        return error to caller
-```
-
----
-
-## Observability
-
-Every consensus execution produces telemetry stored in PostgreSQL: execution records, per-worker results, arbiter decisions, and Thompson Sampling updates. This enables post-hoc analysis of consensus quality and identification of systematically underperforming models.
+- [Loom Architecture](loom.md)
+- [Orchestration Layer](orchestration.md)
+- [Model Routing](routing.md)
+- [Design Philosophy](../philosophy.md)
+- [Engineering Standards](https://github.com/FlossWare/engineering-standards)
