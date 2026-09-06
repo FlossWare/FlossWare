@@ -97,6 +97,52 @@ Loom coordinates higher-level behavior such as:
 
 These capabilities should remain independently replaceable behind contracts where practical.
 
+## Default profile
+
+Loom's default profile is deliberately **local, dependency-light, and safe to run without infrastructure provisioning**. Defaults are implementation choices for the baseline profile, not mandatory architectural dependencies.
+
+| Capability | Default | Notes |
+|---|---|---|
+| Orchestrator | Loom built-in | Authoritative application/workflow coordinator. |
+| Execution | In-process | Simple local execution with no remote runtime required. |
+| Workers | Local worker | Provides the zero-infrastructure execution path. |
+| Distributed fleet | Disabled / opt-in | Required target capability, but not required for local startup. |
+| Queue | In-memory | Durable/distributed queues are selected by deployment when needed. |
+| Persistence | SQLite | Local durable state without requiring PostgreSQL. |
+| Search | SQLite/basic local search | Dedicated or vector search is optional. |
+| Embeddings | Local implementation | No hosted embedding service is mandatory. |
+| Graph | In-memory/local | A graph backend is optional. |
+| Inference | `model-router` | Provider/model/account selection remains outside Loom. |
+| Consensus | Disabled by default | Avoids unnecessary multi-model cost for ordinary requests. |
+| Arbiter | Model-router-selected | Used when consensus or verification requires model-based arbitration. |
+| API | REST + SDK | Primary application boundary over the Orchestrator. |
+| MCP | Loom MCP adapter | Must use the same Orchestrator boundary. |
+| CLI/TUI | Loom adapters | Operational interfaces, not alternate orchestration paths. |
+| Observability | Local logging | External telemetry is deployment-selected. |
+| Secrets | Environment/local provider | No Vault or other external secrets service is mandatory. |
+| Configuration | `agent-setup` | Authoritative source for profiles, identity, policy, and effective configuration. |
+
+The baseline profile should work without PostgreSQL, Redis, OrientDB, a cloud model account, or Podman. Optional integrations remain available through explicit backend/provider configuration and extras.
+
+### Production profile
+
+Production-like deployments may replace the local defaults with durable and distributed implementations, for example:
+
+```text
+Loom
+├── Orchestrator
+├── distributed fleet workers
+├── durable/distributed queue
+├── PostgreSQL or another durable persistence backend
+├── dedicated/vector search where required
+├── optional graph backend
+├── model-router
+├── agent-setup
+└── deployment-selected observability/secrets
+```
+
+PostgreSQL, Redis, pgvector, OrientDB, or any other concrete technology is therefore a **supported implementation choice**, not a prerequisite for Loom itself. Distributed workers must use the worker contract and worker-initiated connectivity regardless of which queue or persistence implementation is selected.
+
 ## Contract layer
 
 Contracts are expressed primarily through small Python `Protocol` interfaces and stable data models. Structural typing is intentional: an implementation does not need to inherit from Loom to satisfy a contract.
@@ -147,7 +193,7 @@ Inference contract    -> hosted API / local model server / other implementation
 
 A deployment selects the implementations it needs. Optional dependencies should be loaded only when the selected implementation requires them.
 
-The default in-memory configuration is deliberately useful. It makes the core testable and usable without provisioning PostgreSQL, Redis, a graph database, a model server, or a cloud account.
+The default profile above is deliberately useful. It makes the core testable and usable without provisioning PostgreSQL, Redis, a graph database, a model server, or a cloud account.
 
 ### Required versus optional
 
@@ -241,6 +287,8 @@ Historical hostnames, fixed machine assignments, provider pools, database ports,
 3. **The core should stay small.** Optional capabilities belong behind contracts and optional dependencies.
 4. **The Orchestrator is first-class.** Application adapters enter through one orchestration boundary, while execution remains replaceable.
 5. **Fleet workers are execution infrastructure.** Workers connect outward to the Orchestrator rather than being managed through SSH.
-6. **Capabilities can mature independently.** Experimental repositories do not need to become core merely because a directory exists for them.
-7. **Documentation must track decisions.** When the architecture changes, stale ADRs and site documentation are part of the change surface.
-8. **Dogfooding is the validation path.** Loom should increasingly exercise its own contracts, tooling, documentation, and external integrations in real FlossWare engineering workflows.
+6. **Local defaults require no external infrastructure.** SQLite, in-memory queues, local execution, and local implementations form the baseline profile.
+7. **Production backends are replaceable.** PostgreSQL, Redis, pgvector, OrientDB, and hosted services are deployment choices unless an explicit ADR makes one mandatory.
+8. **Capabilities can mature independently.** Experimental repositories do not need to become core merely because a directory exists for them.
+9. **Documentation must track decisions.** When the architecture changes, stale ADRs and site documentation are part of the change surface.
+10. **Dogfooding is the validation path.** Loom should increasingly exercise its own contracts, tooling, documentation, and external integrations in real FlossWare engineering workflows.
