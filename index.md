@@ -1,5 +1,6 @@
 ---
 title: FlossWare
+description: Free-first, modular infrastructure and AI-assisted engineering
 ---
 
 <div class="fw-hero">
@@ -18,125 +19,141 @@ title: FlossWare
 <div class="fw-stats">
   <div><strong>Open</strong><span>standards first</span></div>
   <div><strong>Modular</strong><span>loosely coupled systems</span></div>
-  <div><strong>AI-ready</strong><span>REST + MCP + events</span></div>
-  <div><strong>Documented</strong><span>decisions preserved</span></div>
+  <div><strong>AI-first</strong><span>Loom execution substrate</span></div>
+  <div><strong>Documented</strong><span>decisions and provenance preserved</span></div>
 </div>
 
 ## What is FlossWare?
 
-FlossWare builds reusable engineering foundations and reference implementations using open standards, explicit configuration, and loosely coupled architectures. The goal is deliberately unfashionable: **make powerful systems understandable, replaceable, and maintainable.**
+FlossWare builds reusable engineering foundations and reference implementations using open standards, explicit configuration, stable contracts, and loosely coupled architectures.
+
+The goal is deliberately unfashionable: **make powerful systems understandable, replaceable, and maintainable.**
 
 <div class="fw-cards">
-  <a class="fw-card" href="#architecture">
+  <a class="fw-card" href="docs/architecture.html">
     <span class="fw-card-icon">01</span>
     <h3>Architecture</h3>
-    <p>Service boundaries, orchestration, routing, distributed fleets, consensus, and stable integration contracts.</p>
+    <p>Loom, Workers, Arbiters, model selection, capability boundaries, provenance, and the rules that keep the system composable.</p>
   </a>
-  <a class="fw-card" href="#knowledge">
+  <a class="fw-card" href="docs/repositories.html">
     <span class="fw-card-icon">02</span>
-    <h3>Knowledge systems</h3>
-    <p>Scraping, chunking, embeddings, vector search, graphs, and the pipelines connecting them.</p>
+    <h3>Repository boundaries</h3>
+    <p>What belongs in each FlossWare repository and where integration should happen without copying implementation.</p>
   </a>
-  <a class="fw-card" href="#projects">
+  <a class="fw-card" href="docs/knowledge.html">
     <span class="fw-card-icon">03</span>
-    <h3>Open-source projects</h3>
-    <p>Reusable libraries, infrastructure tooling, engineering standards, and reference implementations.</p>
+    <h3>Knowledge</h3>
+    <p>Acquisition, provenance, derived artifacts, retrieval, and the Git-backed human knowledge system.</p>
   </a>
 </div>
 
 ## Architecture {#architecture}
 
 <div class="fw-principles">
-  <div><strong>Configuration is the source of truth.</strong><span>Behavior should be explicit rather than hidden in code.</span></div>
-  <div><strong>Minimal by default.</strong><span>Capabilities are enabled deliberately.</span></div>
-  <div><strong>Contracts over coupling.</strong><span>Stable interfaces let components evolve independently.</span></div>
-  <div><strong>Open standards.</strong><span>Prefer interoperable designs over vendor lock-in.</span></div>
+  <div><strong>Workers are fundamental.</strong><span>An Arbiter is a Worker that coordinates Workers.</span></div>
+  <div><strong>Hard constraints first.</strong><span>Policy, capability, budget, quota, rate, and availability define feasibility.</span></div>
+  <div><strong>Contracts over coupling.</strong><span>Capabilities evolve behind stable integration boundaries.</span></div>
+  <div><strong>Evidence over diagrams.</strong><span>Executable dogfooding promotes ideas into durable architecture.</span></div>
 </div>
 
 ```text
-                         Clients / Agents
-                                |
-                   REST APIs / MCP Tool Interfaces
-                                |
-                         Service Boundaries
-                         /               \\
-                        /                 \\
-              Stored Procedures       Message Bus
-                    |                       |
-                    v                       v
-                Databases             Event Consumers
+                         Intent
+                           |
+                        Arbiter
+                       /      \
+                  Worker    Worker
+                       \      /
+                        Arbiter
+                           |
+                        evidence
+                           |
+                       evaluation
+                           |
+                         result
 ```
 
-- **REST** provides synchronous service contracts.
-- **MCP** provides AI agent and tool integration contracts.
-- **Message buses** provide asynchronous workflows and event-driven integration.
-- **Stored procedures** provide database abstraction where they add value.
-- **ADRs** preserve architectural decisions.
+### Model selection
+
+```text
+request
+  -> candidates
+  -> hard constraints
+  -> feasible resources / models
+  -> selection strategy
+  -> invocation
+  -> usage / cost / latency / outcome
+  -> evaluation / reward
+  -> strategy / knowledge update
+```
 
 ### Architecture documentation
 
-- [Orchestration Layer](docs/architecture/orchestration.html) — REST API, task classification, request lifecycle
-- [Distributed Fleet](docs/architecture/fleet.html) — heterogeneous cluster topology and SSH-based distribution
-- [Consensus Engine](docs/architecture/consensus.html) — multi-model synthesis and arbiter patterns
-- [Model Routing](docs/architecture/routing.html) — Thompson Sampling, capability matrix, fallback chains
+- [FlossWare Architecture](docs/architecture.html)
+- [Repository Boundaries](docs/repositories.html)
+- [Engineering Principles](docs/principles.html)
+- [Dogfooding and Engineering Lessons](docs/dogfooding.html)
+- [Knowledge Architecture](docs/knowledge.html)
 
-## Knowledge systems {#knowledge}
+## Loom
 
-<div class="fw-cards fw-cards-compact">
-  <a class="fw-card" href="docs/knowledge/scraping.html"><h3>Ingest</h3><p>Web scraping and document acquisition from diverse knowledge domains.</p></a>
-  <a class="fw-card" href="docs/knowledge/chunking.html"><h3>Transform</h3><p>Semantic chunking and preparation for downstream retrieval.</p></a>
-  <a class="fw-card" href="docs/knowledge/embeddings.html"><h3>Retrieve</h3><p>Vector embeddings, HNSW indexing, and similarity search.</p></a>
-  <a class="fw-card" href="docs/knowledge/graph.html"><h3>Connect</h3><p>Knowledge graphs and relationship traversal across stored knowledge.</p></a>
-</div>
+Loom is the AI-first execution substrate. It turns declarative intent into verified change while remaining deliberately small.
 
-### Knowledge documentation
+The core executable abstraction is the `Worker`. `Arbiter` coordination is ordinary Worker composition. External clients such as Crush, Claude Code, Codex, and Cursor remain outside Loom's internal execution model and consume Loom through explicit interfaces.
 
-- [Web Scraping](docs/knowledge/scraping.html)
-- [Document Chunking](docs/knowledge/chunking.html)
-- [Vector Embeddings](docs/knowledge/embeddings.html)
-- [Knowledge Graph](docs/knowledge/graph.html)
+The canonical dogfood path is:
 
-## Data and infrastructure
+```text
+loom-ai/scripts/dogfood.sh
+```
 
-| System | Role |
-|---|---|
-| [PostgreSQL + pgvector](docs/databases/postgres.html) | Relational storage and vector similarity |
-| [Redis](docs/databases/redis.html) | Pipeline queues, caching, and rate limiting |
-| [OrientDB](docs/databases/orientdb.html) | Graph storage and relationship traversal |
+The core gate exercises formatting, linting, tests, package build, Intent construction, Worker execution, Arbiter coordination, completion evaluation, and end-to-end core execution without requiring provider credentials, databases, Redis, OrientDB, containers, or a local model.
 
-## Learning and optimization
+## Knowledge system
 
-The engineering work also includes experimental systems for adaptive decision-making and configuration evolution.
+FlossWare keeps one human-readable knowledge corpus:
 
-- [Thompson Sampling](docs/learning/thompson_sampling.html) — Bayesian multi-armed bandit for strategy selection
-- [Genetic Algorithms](docs/learning/genetic_algorithms.html) — configuration evolution across multiple domains
+```text
+Obsidian authoring
+       |
+       v
+Git-backed Markdown
+       |
+       +------> GitHub source/history
+       |
+       +------> GitHub Pages presentation
+```
 
-## Operations
+Obsidian is the authoring interface. GitHub provides version history and public source. GitHub Pages presents the same Markdown as the public documentation site. There is no second manually synchronized copy of the knowledge base.
 
-- [Deployment](docs/operations/deployment.html) — Ansible-automated fleet deployment
-- [Monitoring](docs/operations/monitoring.html) — fleet health and provider tracking
-- [Scaling](docs/operations/scaling.html) — horizontal and vertical scaling and bottleneck identification
+## Engineering principles
 
-## Projects {#projects}
+- **Modular by default** — components remain independently usable.
+- **Explicit behavior** — infrastructure capabilities are enabled deliberately.
+- **Contracts over coupling** — prefer stable interfaces and composition.
+- **Hard constraints before optimization** — adaptive strategies operate only within the feasible set.
+- **Provenance is part of the data** — derived artifacts remain traceable.
+- **AI-assisted engineering is explicit** — automation operates through contracts and validation.
+- **Knowledge is maintained** — architecture and decisions remain reviewable and versioned.
+
+## Projects
 
 <div class="fw-projects">
-  <a href="https://github.com/FlossWare/engineering-standards"><strong>engineering-standards</strong><span>Architecture decisions, engineering principles, and development standards.</span></a>
-  <a href="https://github.com/FlossWare/commons-java"><strong>commons-java</strong><span>Shared Java foundation libraries.</span></a>
-  <a href="https://github.com/FlossWare/tftp-os"><strong>tftp-os</strong><span>Reference implementation for infrastructure provisioning and automation.</span></a>
+  <a href="https://github.com/FlossWare/loom-ai"><strong>loom-ai</strong><span>AI-first execution substrate built around Intent, Workers, Arbiters, evidence, and evaluation.</span></a>
+  <a href="https://github.com/FlossWare/model-gateway"><strong>model-gateway</strong><span>Provider/model access, feasibility, routing, usage, cost, and provenance boundaries.</span></a>
+  <a href="https://github.com/FlossWare/curses-tui"><strong>curses-tui</strong><span>Reusable terminal interaction primitives.</span></a>
 </div>
 
-## Development
+## Historical material
 
-- [Getting Started](docs/development/getting_started.html)
-- [Contributing](docs/development/contributing.html)
-- [Coding Standards](docs/development/coding_standards.html)
-- [Design Philosophy](docs/philosophy.html)
+Older documentation remains valuable as evidence of architectural evolution, but it is not current authority. In particular, older orchestration, fleet, provider, database, and learning documents may describe superseded systems.
+
+**Current architecture wins. Historical documents explain how we got here.**
 
 ## About FlossWare
 
-FlossWare is an open-source engineering effort led by **[Scot P. Floess (Flossy)](sfloess/)**. The work spans distributed systems, enterprise Java, search, AI/ML, infrastructure automation, and open-source tooling.
+FlossWare is an open-source engineering effort led by **[Scot P. Floess (Flossy)](sfloess/)** spanning distributed systems, search, AI/ML, infrastructure automation, and open-source tooling.
 
-For the professional résumé and background, visit [sfloess.github.io](https://sfloess.github.io). For the Salesforce deployment project, visit [Solenopsis](https://solenopsis.github.io).
+For the professional résumé and background, visit [sfloess.github.io](https://sfloess.github.io).
 
 ---
 
