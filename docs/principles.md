@@ -18,6 +18,19 @@ The default behavior is nothing. Components should not implicitly publish events
 
 Stable interfaces, adapters, composition, decoration, and explicit bridges are preferred to copying implementation across repository boundaries.
 
+## Contract before implementation
+
+A language-neutral contract is authoritative for its semantics. Language implementations are realizations of that contract and are peers rather than competing authorities.
+
+Where a contract family is split across repositories, use the FlossWare repository-layering convention:
+
+    {contract}
+    {contract}-{language}
+    {contract}-{domain}
+    {contract}-{domain}-{language}
+
+The detailed normative rule is FlossWare engineering standard ADR-0024.
+
 ## Hard constraints before optimization
 
 Authorization, policy, capability, budget, quota, rate, and availability constraints define the feasible set. Learned or adaptive strategies may optimize within that set, never around it.
@@ -36,9 +49,9 @@ Architecture, decisions, lessons, research, and provenance are maintained as dur
 
 ## Current authority
 
-- **Knowledge:** the Git-backed FlossWare Markdown vault
-- **Public presentation:** the FlossWare GitHub Pages site
-- **Executable implementation:** the appropriate FlossWare software repository
-- **Historical material:** Git history and explicitly marked historical documentation
+- Knowledge: the Git-backed FlossWare Markdown vault
+- Public presentation: the FlossWare GitHub Pages site
+- Executable implementation: the appropriate FlossWare software repository
+- Historical material: Git history and explicitly marked historical documentation
 
 There should be one knowledge corpus, not parallel manually synchronized copies.
