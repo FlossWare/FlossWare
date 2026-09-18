@@ -4,89 +4,117 @@ title: FlossWare Architecture
 
 # FlossWare Architecture
 
-> **Current baseline · 2026-09-13**
+> **Current baseline · 2026-09-17**
 >
-> FlossWare is a collection of composable capabilities with **Loom as the AI-first execution substrate**. This page describes the current architecture. Older architecture material remains in Git history and the legacy documentation tree as historical evidence.
+> FlossWare is a collection of composable capabilities with **Loom as a language-neutral execution substrate**. AI is a domain built on Loom rather than the definition of Loom itself. Older architecture material remains in Git history and explicitly historical documentation.
 
-## The core model
+## Contract and implementation layers
 
-Loom turns declarative intent into verified change while deliberately keeping its core small.
+FlossWare separates foundational contracts, domain contracts, and language implementations:
 
-```text
-Intent
-  -> Arbiter
-      -> Worker
-      -> Worker
-      -> Arbiter
-  -> evidence
-  -> evaluation
-  -> result
-```
+    {contract}
+         |
+         +-- {contract}-{language}
+         |
+         +-- {contract}-{domain}
+                   |
+                   +-- {contract}-{domain}-{language}
 
-`Worker` is the fundamental executable abstraction. An `Arbiter` is a Worker that coordinates Workers, so recursive composition is ordinary rather than a special workflow primitive.
+For Loom this becomes:
 
-External clients such as Crush, Claude Code, Codex, and Cursor consume Loom through external interfaces. They are **not** Loom Workers merely because they can invoke Loom.
+    loom
+      |
+      +-- loom-python
+      |
+      +-- loom-ai
+             |
+             +-- loom-ai-python
+
+The reusable repository naming and layering rule is defined by the FlossWare engineering standard ADR-0024.
+
+## The core Loom model
+
+Loom provides the language-neutral machinery for:
+
+    Contract
+      -> Requirement / Capability
+      -> Registration
+      -> Discovery
+      -> Provider / Builder
+      -> Endpoint / Binding
+      -> Invocation
+      -> Result / Evidence
+
+A Loom implementation realizes these semantics. The implementation language is not part of the Loom contract.
+
+## AI domain model
+
+The AI domain builds on Loom:
+
+    Loom contracts
+         |
+         v
+    AI-domain contracts
+         |
+         v
+    AI implementation
+         |
+       Intent
+         -> Arbiter
+             -> Worker
+             -> Worker
+         -> evidence
+         -> result
+
+loom-ai owns the AI-domain contracts and semantics. loom-ai-python owns their Python implementation. Future implementations such as loom-ai-java are peers.
+
+External clients such as Crush, Claude Code, Codex, and Cursor consume Loom through external interfaces. They are not Loom implementations merely because they can invoke Loom.
 
 ## Current boundaries
 
-| Repository / capability | Responsibility |
+| Repository | Responsibility |
 |---|---|
-| `loom-ai` | Intent, Worker/Arbiter execution, explicit execution state, evidence, task-level orchestration, stable integration points |
-| `loom-setup` | Installation and runtime setup |
-| `loom-client-setup` | External-client configuration and integration |
-| `model-gateway` | Provider/model invocation, resources, accounts, credentials, feasibility, selection, usage/cost, provenance, prompt caching |
-| `evaluation` | Evaluation and reward implementations |
-| `strategy` | Interchangeable decision and optimization strategies |
-| `consensus` | Multi-model consensus |
-| `budget` | Budget and cost controls |
-| `storage`, `retrieval`, `rag` | Storage and retrieval capabilities |
-| `scraping` | Discovery and resource acquisition |
-| `chunking` | Provenance-preserving chunk derivation |
-| `structured-output`, `cache`, `conversation`, `streaming` | Dedicated cross-cutting capabilities |
-| `observability`, `resilience`, `security` | Operational and safety boundaries |
-| `curses-tui`, `tui-schema` | Reusable terminal interaction and canonical TUI schema |
-| `genetic-optimizer` | Genetic optimization capability |
+| loom | Language-neutral Loom protocol, semantic model, binding model, and conformance |
+| loom-python | Python implementation of the Loom contract |
+| loom-ai | AI-domain contracts and semantics built on Loom |
+| loom-ai-python | Python implementation of AI-domain contracts |
+| loom-setup | Installation and runtime setup |
+| loom-client-setup | External-client configuration and integration |
+| model-gateway | Provider/model invocation, resources, accounts, credentials, feasibility, selection, usage/cost, provenance, prompt caching |
+| evaluation | Evaluation and reward implementations |
+| strategy | Interchangeable decision and optimization strategies |
+| consensus | Multi-model consensus |
+| budget | Budget and cost controls |
+| storage, retrieval, rag | Storage and retrieval capabilities |
+| scraping | Discovery and resource acquisition |
+| chunking | Provenance-preserving chunk derivation |
+| structured-output, cache, conversation, streaming | Dedicated cross-cutting capabilities |
+| observability, resilience, security | Operational and safety boundaries |
+| curses-tui, tui-schema | Reusable terminal interaction and canonical TUI schema |
+| genetic-optimizer | Genetic optimization capability |
 
-Loom composes these capabilities. It does not absorb their implementations merely because it can call them.
-
-## Model selection
-
-```text
-request
-  -> candidates
-  -> hard constraints
-  -> feasible resources / models
-  -> selection strategy
-  -> invocation
-  -> usage / cost / latency / outcome
-  -> evaluation / reward
-  -> strategy / knowledge update
-```
-
-Hard authorization, policy, capability, budget, quota, rate, and availability constraints are authoritative. Adaptive strategies operate only inside the feasible set.
+Repository boundaries are architectural constraints. A capability belongs behind its contract rather than being absorbed into the repository that happens to call it.
 
 ## Knowledge and acquisition
 
 Knowledge acquisition is separate from Loom execution:
 
-```text
-Discovery -> URI set -> Acquisition -> local corpus
-                                  -> extraction / normalization
-                                  -> chunking
-                                  -> embedding / indexing / retrieval
-```
+    Discovery -> URI set -> Acquisition -> local corpus
+                                      -> extraction / normalization
+                                      -> chunking
+                                      -> embedding / indexing / retrieval
 
 Raw acquisition artifacts remain preserved. Content is content-addressed and source provenance is retained. Chunks are derived artifacts whose provenance and structured metadata remain separate from canonical chunk text.
 
 ## Architectural rules
 
-1. Do not create a new primitive merely because an external product or algorithm uses one.
-2. First locate behavior in an existing Worker, Arbiter, Strategy, Evaluator, Gateway, capability, or persistence boundary.
-3. Keep capability implementations behind stable contracts.
-4. Apply hard constraints before learned optimization.
-5. Preserve provenance across acquisition, derivation, execution, evaluation, and retrieval.
-6. Keep external clients outside Loom's internal execution model.
-7. Preserve historical repositories as evidence without treating them as current architecture.
+1. Keep foundational contracts language-neutral.
+2. Keep domain contracts separate from their language implementations.
+3. Treat implementations in different languages as peers.
+4. Do not make a reference implementation the de facto contract specification.
+5. Keep capability implementations behind stable contracts.
+6. Preserve provenance across acquisition, derivation, execution, evaluation, and retrieval.
+7. Keep external clients outside Loom's internal execution model.
 8. Promote ideas into durable decisions through implementation and executable dogfood evidence.
 
 ## Where the knowledge lives
@@ -97,7 +125,7 @@ GitHub remains the executable source of truth for software, contracts, tests, an
 
 ## Evidence
 
-- [Repository boundaries](repositories.html)
-- [Engineering principles](principles.html)
-- [Dogfooding](dogfooding.html)
-- [FlossWare GitHub organization](https://github.com/FlossWare)
+- Repository boundaries
+- Engineering principles
+- Dogfooding
+- FlossWare GitHub organization
