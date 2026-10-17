@@ -2,11 +2,11 @@
 
 The FlossWare public documentation site.
 
-This repository publishes selected FlossWare documentation through GitHub Pages. The canonical non-code knowledge corpus lives in [FlossWare/axium](https://github.com/FlossWare/axium); normative rules and cross-project standards live in [FlossWare/standards](https://github.com/FlossWare/standards).
+This repository publishes selected FlossWare documentation through GitHub Pages. The canonical non-code knowledge corpus lives in [FlossWare/knowledge](https://github.com/FlossWare/knowledge); normative rules and cross-project standards live in [FlossWare/standards](https://github.com/FlossWare/standards).
 
 ## Repository roles
 
-- **Axium** is the canonical non-code knowledge corpus.
+- **Knowledge** is the canonical non-code knowledge corpus.
 - **Standards** is the normative authority for cross-project rules.
 - **This repository** provides selected public documentation and presentation.
 - **FlossWare software repositories** remain authoritative for executable implementations, contracts, and tests.
