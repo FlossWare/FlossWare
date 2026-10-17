@@ -63,9 +63,9 @@ These names may still exist in Git history or older repositories, but they are n
 - learning
 - workflow
 - crush-demo
-- `knowledge` as an active software repository
+- `knowledge` as the canonical non-code knowledge corpus
 
-Durable human-readable knowledge belongs in [FlossWare/axium](https://github.com/FlossWare/axium), the canonical non-code knowledge corpus. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative rules; Axium records and connects knowledge, decisions, research, and provenance. The public documentation site is a presentation layer, not a competing canonical corpus.
+Durable human-readable knowledge belongs in [FlossWare/knowledge](https://github.com/FlossWare/knowledge), the canonical non-code knowledge corpus. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative rules; Knowledge records and connects knowledge, decisions, research, and provenance. The public documentation site is a presentation layer, not a competing canonical corpus.
 
 ## Boundary rule
 
