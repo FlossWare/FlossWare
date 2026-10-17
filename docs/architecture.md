@@ -119,9 +119,9 @@ Raw acquisition artifacts remain preserved. Content is content-addressed and sou
 
 ## Where the knowledge lives
 
-[FlossWare/axium](https://github.com/FlossWare/axium) is the canonical Git-backed, non-code knowledge corpus. Markdown and Obsidian support authoring; they do not define the corpus's identity. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative cross-project rules. This repository publishes selected public-facing documentation and is not a competing canonical knowledge source.
+[FlossWare/knowledge](https://github.com/FlossWare/knowledge) is the canonical Git-backed, non-code knowledge corpus. Markdown and Obsidian support authoring; they do not define the corpus's identity. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative cross-project rules. This repository publishes selected public-facing documentation and is not a competing canonical knowledge source.
 
-Software repositories remain the executable source of truth for implementations, contracts, and tests. Axium provides the durable human-readable knowledge layer.
+Software repositories remain the executable source of truth for implementations, contracts, and tests. Knowledge provides the durable human-readable knowledge layer.
 
 ## Evidence
 
