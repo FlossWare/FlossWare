@@ -29,7 +29,7 @@ Where a contract family is split across repositories, use the FlossWare reposito
     {contract}-{domain}
     {contract}-{domain}-{language}
 
-The detailed normative rule is FlossWare engineering standard ADR-0024.
+The detailed normative contract-family naming rule is [FlossWare/standards ADR-0024](https://github.com/FlossWare/standards/blob/main/adr/ADR-0024-contract-centric-repository-layering-and-naming.md).
 
 ## Hard constraints before optimization
 
@@ -45,12 +45,13 @@ AI participates through defined contracts, workflows, and validation rather than
 
 ## Knowledge is maintained
 
-Architecture, decisions, lessons, research, and provenance are maintained as durable human-readable Markdown. They are versioned with Git and can be authored in Obsidian.
+Architecture, decisions, lessons, research, and provenance are maintained as durable human-readable Markdown in [FlossWare/axium](https://github.com/FlossWare/axium). Obsidian is an authoring interface, not the repository's purpose.
 
 ## Current authority
 
-- Knowledge: the Git-backed FlossWare Markdown vault
-- Public presentation: the FlossWare GitHub Pages site
+- Normative standards: [FlossWare/standards](https://github.com/FlossWare/standards)
+- Canonical knowledge corpus: [FlossWare/axium](https://github.com/FlossWare/axium)
+- Public presentation: the FlossWare GitHub Pages repository
 - Executable implementation: the appropriate FlossWare software repository
 - Historical material: Git history and explicitly marked historical documentation
 
