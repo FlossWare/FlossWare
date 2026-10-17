@@ -24,7 +24,7 @@ The names communicate architectural role:
 - {contract}-{domain}: domain-specific contract and semantics.
 - {contract}-{domain}-{language}: implementation of the domain contract in a specific language.
 
-The normative rule is FlossWare engineering standard ADR-0024.
+The normative contract-family naming rule is [FlossWare/standards ADR-0024](https://github.com/FlossWare/standards/blob/main/adr/ADR-0024-contract-centric-repository-layering-and-naming.md). It applies to contract families, not every repository.
 
 ## Loom family
 
@@ -63,9 +63,8 @@ These names may still exist in Git history or older repositories, but they are n
 - learning
 - workflow
 - crush-demo
-- knowledge as an active development repository
 
-Durable human-readable knowledge belongs in the Git-backed FlossWare knowledge vault rather than in a dedicated knowledge software repository.
+The active [FlossWare/knowledge](https://github.com/FlossWare/knowledge) repository is the canonical non-code knowledge corpus, not a software capability repository. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative rules; the knowledge corpus records and connects knowledge, decisions, research, and provenance. The public documentation site is a presentation layer, not a competing canonical corpus.
 
 ## Boundary rule
 

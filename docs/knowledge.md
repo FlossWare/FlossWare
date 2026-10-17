@@ -36,7 +36,7 @@ Human-readable knowledge includes:
 - dogfooding lessons
 - provenance and historical context
 
-This material is Markdown in the Git-backed FlossWare knowledge vault. Obsidian is an authoring interface, Git provides version history, and GitHub Pages provides the public presentation.
+This material belongs in [FlossWare/knowledge](https://github.com/FlossWare/knowledge), the canonical Git-backed knowledge corpus. Obsidian is an authoring interface and Git provides version history. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative rules. The FlossWare GitHub Pages repository publishes selected public-facing documentation, not a competing canonical corpus.
 
 ## Historical knowledge
 

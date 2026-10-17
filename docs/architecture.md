@@ -30,7 +30,7 @@ For Loom this becomes:
              |
              +-- loom-ai-python
 
-The reusable repository naming and layering rule is defined by the FlossWare engineering standard ADR-0024.
+The reusable contract-family naming and layering rule is defined by [FlossWare/standards ADR-0024](https://github.com/FlossWare/standards/blob/main/adr/ADR-0024-contract-centric-repository-layering-and-naming.md). It does not prescribe names for every repository.
 
 ## The core Loom model
 
@@ -119,9 +119,9 @@ Raw acquisition artifacts remain preserved. Content is content-addressed and sou
 
 ## Where the knowledge lives
 
-The FlossWare knowledge base is Markdown and Git-backed so it can be authored locally in Obsidian and published through GitHub Pages. The public site is a presentation of that same knowledge, not a second manually maintained documentation corpus.
+[FlossWare/knowledge](https://github.com/FlossWare/knowledge) is the canonical Git-backed, non-code knowledge corpus. Markdown and Obsidian support authoring; they do not define the corpus's identity. [FlossWare/standards](https://github.com/FlossWare/standards) owns normative cross-project rules. This repository publishes selected public-facing documentation and is not a competing canonical knowledge source.
 
-GitHub remains the executable source of truth for software, contracts, tests, and implementation details. The knowledge vault provides the human-readable architectural layer.
+Software repositories remain the executable source of truth for implementations, contracts, and tests. Knowledge provides the durable human-readable knowledge layer.
 
 ## Evidence
 
