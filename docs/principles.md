@@ -45,12 +45,12 @@ AI participates through defined contracts, workflows, and validation rather than
 
 ## Knowledge is maintained
 
-Architecture, decisions, lessons, research, and provenance are maintained as durable human-readable Markdown in [FlossWare/axium](https://github.com/FlossWare/axium). Obsidian is an authoring interface, not the repository's purpose.
+Architecture, decisions, lessons, research, and provenance are maintained as durable human-readable Markdown in [FlossWare/knowledge](https://github.com/FlossWare/knowledge). Obsidian is an authoring interface, not the repository's purpose.
 
 ## Current authority
 
 - Normative standards: [FlossWare/standards](https://github.com/FlossWare/standards)
-- Canonical knowledge corpus: [FlossWare/axium](https://github.com/FlossWare/axium)
+- Canonical knowledge corpus: [FlossWare/knowledge](https://github.com/FlossWare/knowledge)
 - Public presentation: the FlossWare GitHub Pages repository
 - Executable implementation: the appropriate FlossWare software repository
 - Historical material: Git history and explicitly marked historical documentation
