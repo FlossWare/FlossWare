@@ -1,16 +1,15 @@
 # FlossWare
 
-The FlossWare knowledge vault and public documentation site.
+The FlossWare public documentation site.
 
-This repository is intentionally **Markdown-first** so the same knowledge can be authored locally in Obsidian, versioned with Git, reviewed on GitHub, and published through GitHub Pages.
+This repository publishes selected FlossWare documentation through GitHub Pages. The canonical non-code knowledge corpus lives in [FlossWare/axium](https://github.com/FlossWare/axium); normative rules and cross-project standards live in [FlossWare/standards](https://github.com/FlossWare/standards).
 
 ## Repository roles
 
-- **Markdown** is the human-readable knowledge corpus.
-- **Obsidian** is the local authoring interface.
-- **GitHub** provides version history, collaboration, and public source.
-- **GitHub Pages** provides the formatted public presentation.
-- **FlossWare software repositories** remain the executable source of truth for implementation, contracts, and tests.
+- **Axium** is the canonical non-code knowledge corpus.
+- **Standards** is the normative authority for cross-project rules.
+- **This repository** provides selected public documentation and presentation.
+- **FlossWare software repositories** remain authoritative for executable implementations, contracts, and tests.
 
 ## Documentation
 
