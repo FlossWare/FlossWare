@@ -1,16 +1,18 @@
 # FlossWare
 
-The FlossWare knowledge vault and public documentation site.
+**Public documentation site and knowledge presentation for the FlossWare ecosystem.**
 
-This repository is intentionally **Markdown-first** so the same knowledge can be authored locally in Obsidian, versioned with Git, reviewed on GitHub, and published through GitHub Pages.
+This repository contains Markdown-backed documentation published through GitHub Pages. It documents architecture, repository boundaries, engineering principles, and project knowledge for human readers.
 
 ## Repository roles
 
-- **Markdown** is the human-readable knowledge corpus.
-- **Obsidian** is the local authoring interface.
-- **GitHub** provides version history, collaboration, and public source.
-- **GitHub Pages** provides the formatted public presentation.
-- **FlossWare software repositories** remain the executable source of truth for implementation, contracts, and tests.
+- **This repository (`FlossWare`)**: public documentation source and GitHub Pages site.
+- **`kbase`**: private Obsidian knowledge corpus and canonical authoring source for private working notes.
+- **`standards`**: normative engineering standards and architecture decisions.
+- **`research`**: investigations and experiments that have not yet become standards or decisions.
+- **Software repositories**: executable implementation, contracts, tests, and release artifacts.
+
+The public site must not accidentally publish private `kbase` content. Only reviewed material intended for publication belongs here.
 
 ## Documentation
 
@@ -22,8 +24,8 @@ This repository is intentionally **Markdown-first** so the same knowledge can be
 
 ## Publishing
 
-The site uses GitHub Pages with Jekyll and the existing Cayman-based FlossWare presentation layer. The Markdown is the content; Jekyll/CSS provide the presentation.
+The site uses GitHub Pages with Jekyll and the existing Cayman-based FlossWare presentation layer. Markdown is the content; Jekyll and CSS provide the presentation.
 
 Public site: [flossware.org](https://flossware.org)
 
-Historical documentation remains in the repository where it can be inspected, but current documentation is authoritative over superseded material.
+Historical documentation remains available for inspection, but current documentation is authoritative over superseded material.
