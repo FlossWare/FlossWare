@@ -95,6 +95,8 @@ External clients such as Crush, Claude Code, Codex, and Cursor consume Loom thro
 
 Repository boundaries are architectural constraints. A capability belongs behind its contract rather than being absorbed into the repository that happens to call it.
 
+See the [Capability Boundary Inventory](capabilities.md) for the initial responsibility-level classification across execution, model invocation, acquisition, retrieval, memory, graph, knowledge, learning, and cross-cutting behavior. The inventory distinguishes contract boundaries from implementation components and deployment units; it does not claim every candidate is implemented.
+
 ## Knowledge and acquisition
 
 Knowledge acquisition is separate from Loom execution:
@@ -116,6 +118,7 @@ Raw acquisition artifacts remain preserved. Content is content-addressed and sou
 6. Preserve provenance across acquisition, derivation, execution, evaluation, and retrieval.
 7. Keep external clients outside Loom's internal execution model.
 8. Promote ideas into durable decisions through implementation and executable dogfood evidence.
+9. Distinguish capability contracts from deployment units; do not create a separate process or repository merely because an algorithm has a name.
 
 ## Where the knowledge lives
 
