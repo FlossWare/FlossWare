@@ -17,6 +17,7 @@ The public site must not accidentally publish private `kbase` content. Only revi
 ## Documentation
 
 - [Architecture](docs/architecture.html)
+- [Capability boundary inventory](docs/capabilities.html)
 - [Repository boundaries](docs/repositories.html)
 - [Engineering principles](docs/principles.html)
 - [Knowledge architecture](docs/knowledge.html)
@@ -27,5 +28,3 @@ The public site must not accidentally publish private `kbase` content. Only revi
 The site uses GitHub Pages with Jekyll and the existing Cayman-based FlossWare presentation layer. Markdown is the content; Jekyll and CSS provide the presentation.
 
 Public site: [flossware.org](https://flossware.org)
-
-Historical documentation remains available for inspection, but current documentation is authoritative over superseded material.
